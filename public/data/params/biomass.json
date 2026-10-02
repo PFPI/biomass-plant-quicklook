@@ -1,0 +1,321 @@
+{
+  "facility": "biomass",
+  "units": "All tons are US short tons (2,000 lb). Green tons are fresh-cut wood including its water; dry tons exclude it.",
+  "params": {
+    "efficiency": {
+      "value": 0.24,
+      "low": 0.22,
+      "high": 0.29,
+      "unit": "fraction",
+      "label": "Efficiency",
+      "note": "Typical for direct-combustion biomass power.",
+      "source": ""
+    },
+    "capacity_factor": {
+      "value": 0.92,
+      "low": 0.85,
+      "high": 0.95,
+      "unit": "fraction",
+      "label": "Uptime",
+      "note": "Assumes about 29 days offline per year."
+    },
+    "moisture": {
+      "value": 0.5,
+      "low": 0.45,
+      "high": 0.55,
+      "unit": "fraction (wet basis)",
+      "label": "Moisture, green wood",
+      "note": "Industry standard for green wood; fresh-cut pine is about half water by weight.",
+      "source": "Zerbe & Bergman (2004)",
+      "url": "https://www.fpl.fs.usda.gov/documnts/fpmu/biomass_energy/basic_wood_energy_information.pdf"
+    },
+    "btu_per_dry_lb": {
+      "value": 8600,
+      "low": 8000,
+      "high": 9000,
+      "unit": "Btu per dry lb (higher heating value)",
+      "label": "Heating value of dry pine"
+    },
+    "carbon_fraction": {
+      "value": 0.5,
+      "unit": "fraction of dry mass",
+      "label": "Carbon content of dry wood"
+    },
+    "tons_per_load": {
+      "value": 26.4,
+      "low": 24,
+      "high": 29,
+      "range_source": "Range across 24 Southern mills, Hamsley et al. (2007)",
+      "unit": "green tons per truck",
+      "label": "Truck load size",
+      "note": "Average net loads at 24 Southern mills were about 26.4 overall.",
+      "source": "Hamsley et al. (2007)",
+      "url": "https://academic.oup.com/sjaf/article-abstract/31/1/12/4782473"
+    },
+    "haul_days_yr": {
+      "value": 365,
+      "low": 260,
+      "high": 365,
+      "range_source": "Weekdays only (260) to every day (365)",
+      "unit": "days per year",
+      "label": "Delivery days",
+      "note": "Use 260 if deliveries run weekdays only."
+    },
+    "share_by_truck": {
+      "value": 1,
+      "low": 0.5,
+      "high": 1,
+      "unit": "fraction",
+      "label": "Share of wood delivered by truck",
+      "note": "Reduce from 100 if other delivery methods like train or barge are used."
+    },
+    "truck_length_ft": {
+      "value": 70,
+      "unit": "feet",
+      "label": "Length of a loaded log truck (tractor plus trailer)"
+    },
+    "circuity": {
+      "value": 1.3,
+      "low": 1.2,
+      "high": 1.4,
+      "range_source": "Typical range for rural roads (assumption)",
+      "unit": "road miles per straight-line mile",
+      "label": "Road Miles",
+      "note": "Assumption; typically 1.2-1.4."
+    },
+    "truck_mpg": {
+      "value": 7.1,
+      "low": 5.5,
+      "high": 7.5,
+      "unit": "miles per gallon",
+      "label": "Combination-truck fuel economy",
+      "note": "National average for combination trucks; loaded log trucks on rural roads likely do worse, so diesel figures are conservative.",
+      "source": "FHWA Highway Statistics 2024, Table VM-1",
+      "url": "https://www.fhwa.dot.gov/policyinformation/statistics/2024/pdf/vm1.pdf"
+    },
+    "avg_mph": {
+      "value": 45,
+      "unit": "miles per hour",
+      "label": "Average road speed",
+      "note": "Assumption for rural highways."
+    },
+    "load_unload_hr": {
+      "value": 1.5,
+      "unit": "hours per trip",
+      "label": "Loading, unloading and waiting",
+      "note": "Assumption."
+    },
+    "duty_hr": {
+      "value": 14,
+      "unit": "hours per day",
+      "label": "Driver on-duty window",
+      "source": "Federal hours-of-service rules"
+    },
+    "diesel_co2_lb": {
+      "value": 22.45,
+      "unit": "lb CO2 per gallon",
+      "label": "Diesel CO2 emission factor",
+      "source": "U.S. EIA, Carbon Dioxide Emissions Coefficients",
+      "url": "https://www.eia.gov/environment/emissions/co2_vol_mass.php"
+    },
+    "diesel_pm_g_per_mi": {
+      "value": 0.137,
+      "unit": "grams per mile",
+      "label": "Heavy diesel particulate matter (exhaust, brake and tire)",
+      "note": "2021 rate, the most recent non-projected year.",
+      "source": "Bureau of Transportation Statistics",
+      "url": "https://www.bts.gov/content/estimated-national-average-vehicle-emissions-rates-vehicle-vehicle-type-using-gasoline-and"
+    },
+    "clearcut_green_tons_per_acre": {
+      "value": 87,
+      "low": 86,
+      "high": 99,
+      "range_source": "Natural 86, plantation 99, ResourceWise (2018)",
+      "unit": "green tons per acre",
+      "label": "Low estimate biomass per acre",
+      "note": "Plantation 99, natural 86, thinning 32 green tons per acre.",
+      "source": "ResourceWise (2018)",
+      "url": "https://www.resourcewise.com/blog/forest-products-blog/how-many-tons-of-wood-are-on-an-acre-of-land-0"
+    },
+    "thinning_green_tons_per_acre": {
+      "value": 32,
+      "low": 25,
+      "high": 40,
+      "unit": "green tons per acre",
+      "label": "Average Southern pine thinning",
+      "source": "ResourceWise",
+      "url": "https://www.resourcewise.com/blog/forest-products-blog/how-many-tons-of-wood-are-on-an-acre-of-land-0"
+    }
+  },
+  "app": {
+    "groups": [
+      {
+        "title": "Plant",
+        "open": true,
+        "fields": [
+          "plant_mw",
+          "efficiency",
+          "capacity_factor",
+          "moisture",
+          "btu_per_dry_lb"
+        ]
+      },
+      {
+        "title": "Wood",
+        "open": false,
+        "fields": [
+          "green_tons",
+          "species",
+          "distance_bands"
+        ]
+      },
+      {
+        "title": "Trucking",
+        "open": false,
+        "fields": [
+          "share_by_truck",
+          "haul_days_yr",
+          "tons_per_load",
+          "truck_mpg",
+          "circuity",
+          "diesel_price"
+        ]
+      },
+      {
+        "title": "Land",
+        "open": false,
+        "fields": [
+          "clearcut_share",
+          "thinning_share",
+          "clearcut_green_tons_per_acre",
+          "thinning_green_tons_per_acre",
+          "biomass_per_acre"
+        ]
+      }
+    ],
+    "ui": {
+      "plant_mw": {
+        "step": 10,
+        "min": 1
+      },
+      "efficiency": {
+        "percent": true,
+        "unit": "%",
+        "step": 0.5
+      },
+      "capacity_factor": {
+        "percent": true,
+        "unit": "%",
+        "step": 1
+      },
+      "moisture": {
+        "percent": true,
+        "unit": "% of green weight",
+        "step": 1
+      },
+      "btu_per_dry_lb": {
+        "unit": "Btu per dry lb",
+        "step": 100
+      },
+      "green_tons": {
+        "step": 100000,
+        "min": 0
+      },
+      "share_by_truck": {
+        "percent": true,
+        "unit": "%",
+        "step": 5
+      },
+      "haul_days_yr": {
+        "step": 1,
+        "min": 1,
+        "max": 366
+      },
+      "tons_per_load": {
+        "step": 1
+      },
+      "truck_mpg": {
+        "step": 0.1
+      },
+      "circuity": {
+        "step": 0.05
+      },
+      "diesel_price": {
+        "step": 0.01
+      },
+      "clearcut_share": {
+        "percent": true,
+        "unit": "%",
+        "step": 5,
+        "min": 0,
+        "max": 100
+      },
+      "thinning_share": {
+        "percent": true,
+        "unit": "%",
+        "step": 5,
+        "min": 0,
+        "max": 100
+      },
+      "clearcut_green_tons_per_acre": {
+        "step": 1
+      },
+      "thinning_green_tons_per_acre": {
+        "step": 1
+      },
+      "biomass_per_acre": {
+        "step": 1
+      }
+    },
+    "extra": {
+      "plant_mw": {
+        "value": 500,
+        "label": "Capacity",
+        "unit": "MW",
+        "note": "Set for each project."
+      },
+      "green_tons": {
+        "label": "Green tons of wood a year",
+        "unit": "green tons",
+        "note": "Calculated from the plant above; type a number to use a different amount."
+      },
+      "species": {
+        "value": "pine",
+        "label": "Type of wood",
+        "options": [
+          {
+            "value": "pine",
+            "label": "Pine only"
+          },
+          {
+            "value": "hardwood",
+            "label": "Hardwood only"
+          },
+          {
+            "value": "all",
+            "label": "Everything"
+          }
+        ],
+        "note": "Which existing harvest the plant is compared with, and where its wood is assumed to come from. Hardwood is all non-pine species."
+      },
+      "distance_bands": {
+        "value": "50, 75, 100",
+        "label": "Distance bands",
+        "unit": "miles, comma-separated",
+        "note": "Circles around the site used to total the forest (up to 8 bands, 1–300 miles)."
+      },
+      "clearcut_share": {
+        "value": 1,
+        "unit": "fraction",
+        "label": "Wood from clearcuts",
+        "note": "The rest comes from thinnings. Changing one changes the other."
+      },
+      "thinning_share": {
+        "value": 0,
+        "unit": "fraction",
+        "label": "Wood from thinnings",
+        "note": "Thinnings yield far less wood per acre, so more acres are cut."
+      }
+    }
+  }
+}

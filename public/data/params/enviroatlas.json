@@ -1,0 +1,50 @@
+{
+  "source": "US EPA EnviroAtlas web services (https://www.epa.gov/enviroatlas)",
+  "service_root": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services",
+  "units": {
+    "tract": { "id_field": "GEOID10", "label": "Census tract", "service": "Non_cancer_neurological_risk_hazard_index_due_to_cumulative_air_toxics" },
+    "huc12": { "id_field": "HUC_12", "label": "Watershed (HUC-12)", "service": "Permittedmetalsdischarges_toxic_weightedpound_equivalents" }
+  },
+  "measures": [
+    {
+      "key": "diesel", "unit": "tract", "field": "AC_DIESEL_PM",
+      "service": "Diesel_PM_air_toxics_Ambient_concentration_μg_m3",
+      "label": "Diesel PM air toxics - Ambient concentration (µg/m³)", "short": "Ambient concentration (µg/m³)",
+      "digits": 3, "vintage": "National Air Toxics Assessment 2014",
+      "epa_classes": { "breaks": [0, 0.251, 0.310, 0.561, 1.618, 6.077], "colors": ["#ffff80", "#71eb2f", "#3db868", "#216f9e", "#0c1078"] }
+    },
+    {
+      "key": "cancer", "unit": "tract", "field": "TOTAL_RISK",
+      "service": "Cancer_risk_per_million_due_to_cumulative_air_toxics",
+      "label": "Cancer risk per million from all air toxics", "short": "Cancer risk per million",
+      "digits": 1, "vintage": "National Air Toxics Assessment 2014"
+    },
+    {
+      "key": "respiratory", "unit": "tract", "field": "RESPIRATORY_HI",
+      "service": "Non_cancer_neurological_risk_hazard_index_due_to_cumulative_air_toxics",
+      "label": "Respiratory hazard index from all air toxics", "short": "Respiratory hazard index",
+      "digits": 3, "vintage": "National Air Toxics Assessment 2014",
+      "threshold": { "value": 1, "note": "Above 1, EPA considers harm possible over a lifetime of exposure." }
+    },
+    {
+      "key": "neuro", "unit": "tract", "field": "NEUROLOGICAL_HI",
+      "service": "Non_cancer_neurological_risk_hazard_index_due_to_cumulative_air_toxics",
+      "label": "Neurological hazard index from all air toxics", "short": "Neurological hazard index",
+      "digits": 3, "vintage": "National Air Toxics Assessment 2014",
+      "threshold": { "value": 1, "note": "Above 1, EPA considers harm possible over a lifetime of exposure." }
+    },
+    {
+      "key": "metals", "unit": "huc12", "field": "DMR_Metals_TWPE_lb_eq_yr",
+      "service": "Permittedmetalsdischarges_toxic_weightedpound_equivalents",
+      "label": "Permitted metals discharges (toxic-weighted lb-eq/yr)", "short": "Metals discharges (TWPE)",
+      "digits": 0, "vintage": "2011 Discharge Monitoring Reports",
+      "note": "Ranked among watersheds with reported discharges."
+    },
+    {
+      "key": "mercury", "unit": "huc12", "field": "MercuryImpLen",
+      "service": "Streamlengthimpairedbymercury_km_",
+      "label": "Stream length impaired by mercury (km)", "short": "Mercury-impaired streams (km)",
+      "digits": 1, "vintage": "2015-16 impaired-waters listings"
+    }
+  ]
+}

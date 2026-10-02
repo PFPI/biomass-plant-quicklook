@@ -1,0 +1,50 @@
+{
+  "note": "Example sites for the app's 'Load an example' picker. Coordinates and capacities are cited where sourced; anything marked 'approximate' is a town-level or address-derived estimate, not a surveyed site boundary. Verify before publishing any figure drawn from these.",
+  "examples": [
+    {
+      "id": "project-river",
+      "name": "Project River",
+      "type": "combustion",
+      "status": "proposed",
+      "lat": 35.3184,
+      "lon": -84.8151,
+      "capacity": { "plant_mw": 500 },
+      "overrides": { "distance_bands": "50, 75, 100, 150, 200" },
+      "source": "PFPI analysis, Project River report (2026)",
+      "note": "PFPI's anchor case. Bradley County, TN."
+    },
+    {
+      "id": "grec",
+      "name": "Gainesville Renewable Energy Center",
+      "type": "combustion",
+      "status": "operating",
+      "lat": 29.735,
+      "lon": -82.359,
+      "capacity": { "plant_mw": 102.5 },
+      "source": "https://power-technology.com/projects/gainesville-center/ ; https://floridadep.gov/air/siting-coordination-office/content/gainesville-renewable-energy-center",
+      "note": "102.5 MW net; some sources cite 100-116 MW gross. Address 10001 NW 13th St, Gainesville, FL -- coordinates are approximate (from the address, not geocoded). Operating since Dec 2013."
+    },
+    {
+      "id": "enviva-northampton",
+      "name": "Enviva Pellets Northampton",
+      "type": "pellet",
+      "status": "operating",
+      "lat": 36.5,
+      "lon": -77.38,
+      "capacity": { "plant_capacity_tons_yr": 826733 },
+      "source": "https://www.envivabiomass.com/facility/northampton-county-nc/ ; NC DEQ air permit (https://deq.nc.gov/media/21753/download)",
+      "note": "Permitted capacity 750,000 metric tons/yr, converted here to 826,733 short tons/yr. 309 Enviva Boulevard, Garysburg, NC -- coordinates are approximate (town-level, not geocoded)."
+    },
+    {
+      "id": "drax-amite",
+      "name": "Drax Amite BioEnergy",
+      "type": "pellet",
+      "status": "operating",
+      "lat": 31.195,
+      "lon": -90.99,
+      "capacity": { "plant_capacity_tons_yr": 578713 },
+      "source": "https://biodieselmagazine.com/articles/drax-plans-another-mississippi-pellet-plant-10423 ; Drax public reporting",
+      "note": "Capacity reported as ~525,000 tonnes/yr, converted here to 578,713 short tons/yr. Gloster, MS (Amite County) -- coordinates are approximate (town-level, no street address found)."
+    }
+  ]
+}
